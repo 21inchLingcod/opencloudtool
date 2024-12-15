@@ -2,6 +2,7 @@ use clap::{Parser, Subcommand};
 use log;
 use oct_cloud::aws;
 use oct_cloud::aws::Resource;
+use oct_ctl::service::run_container;
 
 #[derive(Parser)]
 #[clap(author, version, about, long_about = None)]
@@ -41,7 +42,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     match &cli.command {
         Commands::Deploy(args) => {
-            // Create EC2 instance
+            //Create EC2 instance
             let mut instance = aws::Ec2Instance::new(
                 "us-west-2".to_string(),
                 "ami-04dd23e62ed049936".to_string(),
@@ -51,6 +52,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             .await;
 
             instance.create().await?;
+            run_container(
+                "nginx".to_string(),
+                "8081".to_string()
+            ).await?;
 
             log::info!("Instance created: {}", instance.id.ok_or("No instance id")?);
         }

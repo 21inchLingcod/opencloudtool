@@ -5,6 +5,7 @@ edition = "2021"
 
 [dependencies]
 oct-cloud = { workspace = true }
+oct-ctl = { workspace = true }
 
 assert_cmd = { workspace = true }
 clap = { workspace = true }

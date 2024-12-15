@@ -4,6 +4,7 @@ resolver = "2"
 
 [workspace.dependencies]
 oct-cloud = { path = "crates/oct-cloud" }
+oct-ctl = { path = "crates/oct-ctl" }
 
 actix-web = "4.9.0"
 assert_cmd = "2.0.16"
@@ -24,3 +25,4 @@ mockall = "0.13.0"
 uuid = { version = "1.11.0", features = ["v4"] }
 log = "0.4.22"
 env_logger = "0.11.5"
+reqwest = "0.12.9"
